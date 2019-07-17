@@ -6,7 +6,7 @@ public class MultiThreadAsrDemoBootstrap {
 
     public static void main(String[] args) throws Exception {
         // 初始化AsrClient，client可复用，无需每次初始化
-        AsrClient asrClient = new AsrClient("http://192.168.110.63:6060", "default");
+        AsrClient asrClient = new AsrClient("default");
 
         String audioFileName = "test.wav";
 
