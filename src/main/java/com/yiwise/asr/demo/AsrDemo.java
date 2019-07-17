@@ -34,7 +34,6 @@ public class AsrDemo {
                     // 如需进行耗时操作，请另外开辟线程执行
                     System.out.println("SentenceEnd-----" + result.toString());
                 }
-
             });
 
 

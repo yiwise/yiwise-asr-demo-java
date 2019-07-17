@@ -10,20 +10,20 @@ public class MultiThreadAsrDemoBootstrap {
 
         String audioFileName = "test.wav";
 
-        int threadCount = 10;  // 开启线程个数
+        int threadCount = 16;  // 开启线程个数
         int loopCount = 10;     // 循环次数
 
-        for (int index = 0; index < loopCount; index++) {
-            for (int i = 0; i < threadCount; i++) {
-                Thread thread = new Thread(() -> {
+        for (int index = 0; index < threadCount; index++) {
+            Thread thread = new Thread(() -> {
+                for (int i = 0; i < loopCount; i++) {
                     try {
                         AsrDemo.doTest(asrClient, audioFileName);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                });
-                thread.start();
-            }
+                }
+            });
+            thread.start();
         }
 
         Thread.currentThread().join();
