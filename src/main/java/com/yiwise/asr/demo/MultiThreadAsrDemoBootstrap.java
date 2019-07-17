@@ -10,7 +10,7 @@ public class MultiThreadAsrDemoBootstrap {
 
         String audioFileName = "test.wav";
 
-        int threadCount = 16;  // 开启线程个数
+        int threadCount = 8;  // 开启线程个数
         int loopCount = 10;     // 循环次数
 
         for (int index = 0; index < threadCount; index++) {
