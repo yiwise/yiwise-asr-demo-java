@@ -11,6 +11,13 @@ public class AsrDemo {
 
     public static void doTest(AsrClient asrClient, String audioFileName) throws Exception {
         try (InputStream fileInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(audioFileName)) {
+
+            // 丢弃wav的头文件
+            if (audioFileName.startsWith(".wav")) {
+                byte[] bytes = new byte[44];
+                fileInputStream.read(bytes);
+            }
+
             // 初始化AsrRecognizer，AsrRecognizer需要在每个识别会话中单独创建
             AsrRecognizer asrRecognizer = new AsrRecognizer(asrClient, new AsrRecognizerListener() {
 
