@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 public class PropertiesLoader {
@@ -11,7 +12,7 @@ public class PropertiesLoader {
         Properties properties = new Properties();
         InputStreamReader isr;
         try {
-            isr = new InputStreamReader(loadAsInputStream(path), "UTF-8");
+            isr = new InputStreamReader(loadAsInputStream(path), StandardCharsets.UTF_8);
             BufferedReader bf = new BufferedReader(isr);
             properties.load(bf);
         } catch (IOException e) {

@@ -58,7 +58,15 @@
                                     <filtering>true</filtering>
                                     <excludes>
                                         <exclude>README.md</exclude>
+                                        <exclude>*.wav</exclude>
                                     </excludes>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>*.wav</include>
+                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
