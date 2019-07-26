@@ -5,13 +5,28 @@ import com.yiwise.asr.AsrRecognizer;
 import com.yiwise.asr.AsrRecognizerListener;
 import com.yiwise.asr.common.client.protocol.AsrRecognizerResult;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class AsrDemo {
 
-    public static void doTest(AsrClient asrClient, String audioFileName) throws Exception {
-        try (InputStream fileInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(audioFileName)) {
+    public static void doTest(AsrClient asrClient, String audioFileName, Long hotWordId,
+                              boolean enablePunctuation, boolean enableIntermediateResult) throws Exception {
+        InputStream fileInputStream;
 
+        File file = new File(audioFileName);
+        if (file.exists()) {
+            fileInputStream = new FileInputStream(file);
+        } else {
+            fileInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(audioFileName);
+        }
+
+        if (fileInputStream == null) {
+            throw new RuntimeException("没有找到该文件，" + audioFileName);
+        }
+
+        try {
             // 丢弃wav的头文件
             if (audioFileName.startsWith(".wav")) {
                 byte[] bytes = new byte[44];
@@ -46,11 +61,11 @@ public class AsrDemo {
 
             // 设置参数
             // 热词id
-            asrRecognizer.setHotWordId(null);
+            asrRecognizer.setHotWordId(hotWordId);
             // 是否打标点
-            asrRecognizer.setEnablePunctuation(false);
+            asrRecognizer.setEnablePunctuation(enablePunctuation);
             // 是否返回中间结果
-            asrRecognizer.setEnableIntermediateResult(false);
+            asrRecognizer.setEnableIntermediateResult(enableIntermediateResult);
 
             // 开启asr识别
             asrRecognizer.startAsr();
@@ -63,6 +78,10 @@ public class AsrDemo {
 
             // 停止ASR识别（发送停止识别后，最后的识别结果返回可能有一定延迟）
             asrRecognizer.stopAsr();
+        } finally {
+            if (fileInputStream != null) {
+                fileInputStream.close();
+            }
         }
     }
 }
