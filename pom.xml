@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.yiwise</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-RELEASE</version>
     <artifactId>asr-client-demo</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.yiwise</groupId>
             <artifactId>asr-client-sdk</artifactId>
-            <version>1.0.0-RELEASE</version>
+            <version>1.0.1-RELEASE</version>
         </dependency>
 
         <dependency>

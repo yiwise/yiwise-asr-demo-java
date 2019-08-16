@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class AsrDemo {
 
-    public static void doTest(AsrClient asrClient, String audioFileName, Long hotWordId,
+    public static String doTest(AsrClient asrClient, String audioFileName, Long hotWordId,
                               boolean enablePunctuation, boolean enableIntermediateResult) throws Exception {
         InputStream fileInputStream;
 
@@ -25,6 +25,8 @@ public class AsrDemo {
         if (fileInputStream == null) {
             throw new RuntimeException("没有找到该文件，" + audioFileName);
         }
+
+        StringBuilder sb = new StringBuilder();
 
         try {
             // 丢弃wav的头文件
@@ -55,6 +57,7 @@ public class AsrDemo {
                     // 请不要再此进行耗时操作，进行耗时操作可能引发一些不可预知问题；
                     // 如需进行耗时操作，请另外开辟线程执行
                     System.out.println("SentenceEnd-----" + result.toString());
+                    sb.append(result.getResultText());
                 }
             });
 
@@ -83,5 +86,7 @@ public class AsrDemo {
                 fileInputStream.close();
             }
         }
+
+        return sb.toString();
     }
 }
