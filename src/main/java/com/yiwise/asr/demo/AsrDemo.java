@@ -30,7 +30,7 @@ public class AsrDemo {
 
         try {
             // 丢弃wav的头文件
-            if (audioFileName.startsWith(".wav")) {
+            if (audioFileName.endsWith(".wav")) {
                 byte[] bytes = new byte[44];
                 fileInputStream.read(bytes);
             }
