@@ -12,7 +12,8 @@ import java.io.InputStream;
 public class AsrDemo {
 
     public static String doTest(AsrClient asrClient, String audioFileName, Long hotWordId,
-                              boolean enablePunctuation, boolean enableIntermediateResult) throws Exception {
+                              boolean enablePunctuation, boolean enableIntermediateResult,
+                                Long selfLearningModelId) throws Exception {
         InputStream fileInputStream;
 
         File file = new File(audioFileName);
@@ -69,6 +70,8 @@ public class AsrDemo {
             asrRecognizer.setEnablePunctuation(enablePunctuation);
             // 是否返回中间结果
             asrRecognizer.setEnableIntermediateResult(enableIntermediateResult);
+            // 自学习模型
+            asrRecognizer.setSelfLearningModelId(selfLearningModelId);
 
             // 开启asr识别
             asrRecognizer.startAsr();

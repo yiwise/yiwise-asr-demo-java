@@ -32,7 +32,7 @@ public class MultiThreadAsrDemoBootstrap {
                 for (int i = 0; i < loopCount; i++) {
 
                     try {
-                        AsrDemo.doTest(AsrClientFactory.getAsrClient(), audioFileName, hotWordId, enablePunctuation, enableIntermediateResult);
+                        AsrDemo.doTest(AsrClientFactory.getAsrClient(), audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, null);
 
                         int remain = count.decrementAndGet();
                         if (remain == 0) {
