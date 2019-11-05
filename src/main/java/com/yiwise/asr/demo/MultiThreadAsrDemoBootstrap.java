@@ -15,6 +15,7 @@ public class MultiThreadAsrDemoBootstrap {
         String accessKeySecret = properties.getProperty("accessKeySecret");
         String audioFileName = properties.getProperty("audioFileName", "test.wav");
         Long hotWordId = StringUtils.isEmpty(properties.getProperty("hotWordId")) ? null : Long.valueOf(properties.getProperty("hotWordId"));
+        Long selfLearningModelId = StringUtils.isEmpty(properties.getProperty("selfLearningModelId")) ? null : Long.valueOf(properties.getProperty("selfLearningModelId"));
         boolean enablePunctuation = Boolean.valueOf(properties.getProperty("enablePunctuation", "false"));
         boolean enableIntermediateResult = Boolean.valueOf(properties.getProperty("enableIntermediateResult", "false"));
 
@@ -32,7 +33,7 @@ public class MultiThreadAsrDemoBootstrap {
                 for (int i = 0; i < loopCount; i++) {
 
                     try {
-                        AsrDemo.doTest(AsrClientFactory.getAsrClient(), audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, null);
+                        AsrDemo.doTest(AsrClientFactory.getAsrClient(), audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, selfLearningModelId);
 
                         int remain = count.decrementAndGet();
                         if (remain == 0) {
