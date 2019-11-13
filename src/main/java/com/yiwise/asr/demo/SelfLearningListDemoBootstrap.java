@@ -5,6 +5,9 @@ import com.yiwise.asr.selflearning.SelflearningModelTrainingUtils;
 
 import java.util.Properties;
 
+/**
+ * 获取自学习模型列表测试
+ */
 public class SelfLearningListDemoBootstrap {
 
     public static void main(String[] args) throws Exception {
@@ -16,7 +19,7 @@ public class SelfLearningListDemoBootstrap {
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
-        String listTrainingRequest = SelflearningModelTrainingUtils.listTrainingRequest(1, 20, null,null);
+        String listTrainingRequest = SelflearningModelTrainingUtils.listTrainingRequest(1, 20, null, null);
         System.out.println(listTrainingRequest);
     }
 

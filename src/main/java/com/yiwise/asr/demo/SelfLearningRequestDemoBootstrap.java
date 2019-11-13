@@ -6,6 +6,9 @@ import com.yiwise.asr.selflearning.SelflearningModelTrainingUtils;
 import java.io.File;
 import java.util.Properties;
 
+/**
+ * 添加自学习模型测试
+ */
 public class SelfLearningRequestDemoBootstrap {
 
     public static void main(String[] args) throws Exception {
@@ -18,7 +21,7 @@ public class SelfLearningRequestDemoBootstrap {
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
         File file = new File(Thread.currentThread().getContextClassLoader().getResource("text.txt").getFile());
-        String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequest(null, "测试模型_" + System.currentTimeMillis(), file);
+        String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequest(1L, "测试模型_" + System.currentTimeMillis(), file);
         System.out.println(trainingRequest);
     }
 
