@@ -21,7 +21,7 @@ public class SelfLearningRequestDemoBootstrap {
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
         File file = new File(Thread.currentThread().getContextClassLoader().getResource("text.txt").getFile());
-        String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequest(1L, "测试模型_" + System.currentTimeMillis(), file);
+        String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequest(null, "测试模型txt_" + System.currentTimeMillis(), file);
         System.out.println(trainingRequest);
     }
 
