@@ -2,11 +2,14 @@ package com.yiwise.asr.demo;
 
 import com.yiwise.asr.AsrClient;
 import com.yiwise.asr.AsrClientFactory;
+import com.yiwise.asr.demo.util.PropertiesLoader;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Properties;
 
-
+/**
+ * 单线程测试demo
+ */
 public class SingleThreadAsrDemoBootstrap {
 
     public static void main(String[] args) throws Exception {

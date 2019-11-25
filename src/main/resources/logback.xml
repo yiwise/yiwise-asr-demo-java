@@ -12,6 +12,7 @@
     </appender>
 
     <logger name="com.yiwise" level="DEBUG"/>
+    <logger name="com.yiwise.asr.transport.NettyMsgSendListener" level="TRACE"/>
 
     <root level="INFO">
         <appender-ref ref="console"/>

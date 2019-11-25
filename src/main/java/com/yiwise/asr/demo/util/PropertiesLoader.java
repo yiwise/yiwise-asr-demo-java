@@ -1,4 +1,4 @@
-package com.yiwise.asr.demo;
+package com.yiwise.asr.demo.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

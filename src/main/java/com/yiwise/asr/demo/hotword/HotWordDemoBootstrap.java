@@ -1,14 +1,18 @@
-package com.yiwise.asr.demo;
+package com.yiwise.asr.demo.hotword;
 
 import com.yiwise.asr.AsrClientFactory;
-import com.yiwise.asr.selflearning.SelflearningModelTrainingUtils;
+import com.yiwise.asr.common.client.utils.JsonUtils;
+import com.yiwise.asr.demo.util.PropertiesLoader;
+import com.yiwise.asr.hotword.HotwordUtils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
- * 获取自学习模型列表测试
+ * 添加热词测试（测试账号没有配额，请联系商务申请正式账号）
  */
-public class SelfLearningListDemoBootstrap {
+public class HotWordDemoBootstrap {
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -19,8 +23,9 @@ public class SelfLearningListDemoBootstrap {
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
-        String listTrainingRequest = SelflearningModelTrainingUtils.listTrainingRequest(1, 20, null, null);
-        System.out.println(listTrainingRequest);
+        Map<String, Integer> map = new HashMap<>();
+        String hotWord = HotwordUtils.addOrUpdateHotWordRequest(null, map);
+        System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(hotWord)));
     }
 
 }
