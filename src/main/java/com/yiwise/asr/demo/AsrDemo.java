@@ -80,6 +80,7 @@ public class AsrDemo {
             // demo使用了文件来模拟音频流的发送，真实条件下，根据采样率发送音频数据即可
             // 对于8k pcm 编码数据，建议每发送4800字节 sleep 300 ms
             // 对于16k pcm 编码数据，建议每发送9600字节 sleep 300 ms
+            // 在识别的过程中，必须持续发送音频，超过十秒钟没有往服务器发送新的音频数据，服务器会主动断开WebSocket连接，并结束当前识别会话
             asrRecognizer.sendAudio(fileInputStream, 4800, 300);
 
             // 停止ASR识别（发送停止识别后，最后的识别结果返回可能有一定延迟）
