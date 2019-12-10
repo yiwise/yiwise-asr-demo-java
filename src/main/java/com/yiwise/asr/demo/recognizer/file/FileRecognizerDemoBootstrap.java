@@ -5,8 +5,10 @@ import com.yiwise.asr.common.client.protocol.AsrParam;
 import com.yiwise.asr.common.client.utils.JsonUtils;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.recognizer.file.FileRecognizerUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Properties;
 
 public class FileRecognizerDemoBootstrap {
@@ -18,11 +20,24 @@ public class FileRecognizerDemoBootstrap {
         String accessKeySecret = properties.getProperty("accessKeySecret");
         String audioFileName = properties.getProperty("audioFileName", "test.wav");
 
+        Long hotWordId = StringUtils.isEmpty(properties.getProperty("hotWordId")) ? null : Long.valueOf(properties.getProperty("hotWordId"));
+        Long selfLearningModelId = StringUtils.isEmpty(properties.getProperty("selfLearningModelId")) ? null : Long.valueOf(properties.getProperty("selfLearningModelId"));
+        boolean enablePunctuation = Boolean.valueOf(properties.getProperty("enablePunctuation", "false"));
+
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
         File file = new File(audioFileName);
+        if (!file.exists()) {
+            URL resource = Thread.currentThread().getContextClassLoader().getResource(audioFileName);
+            String resourceFile = resource.getFile();
+            file = new File(resourceFile);
+        }
+
         AsrParam asrParam = new AsrParam();
+        asrParam.setEnablePunctuation(enablePunctuation);
+        asrParam.setHotWordId(hotWordId);
+        asrParam.setSelfLearningModelId(selfLearningModelId);
 
         // 识别通道
         // [1]          表示单通道

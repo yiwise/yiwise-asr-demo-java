@@ -18,7 +18,9 @@ public class QueryFileRecognizerResultDemoBootstrap {
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
-        String recognizeFileResult = FileRecognizerUtils.queryRecognizeFileResult(null,3L);
+        Long fileRecognizerTaskId = 1L;
+
+        String recognizeFileResult = FileRecognizerUtils.queryRecognizeFileResult(null, fileRecognizerTaskId);
         System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileResult)));
     }
 
