@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.Properties;
 
 public class FileRecognizerDemoBootstrap {
@@ -31,7 +32,7 @@ public class FileRecognizerDemoBootstrap {
         if (!file.exists()) {
             URL resource = Thread.currentThread().getContextClassLoader().getResource(audioFileName);
             String resourceFile = resource.getFile();
-            file = new File(resourceFile);
+            file = new File(URLDecoder.decode(resourceFile, "UTF-8"));
         }
 
         AsrParam asrParam = new AsrParam();
@@ -45,9 +46,15 @@ public class FileRecognizerDemoBootstrap {
         // [1, 0]       表示双通道文件，只识别左声道
         // [1, 1]       表示识别双声道
         // 如果是双声道文件，并且两个声道都要识别，计时时间按照2倍时长计算
-        Integer[] recognizeAudioChannelArr = new Integer[]{1};
+        Integer[] recognizeAudioChannelArr;
 
-        String recognizeFileRequest = FileRecognizerUtils.sendRecognizeFileRequest(null, file, asrParam, recognizeAudioChannelArr);
+        if (StringUtils.contains(file.getName(), "双声道")) {
+            recognizeAudioChannelArr = new Integer[]{1, 1};
+        } else {
+            recognizeAudioChannelArr = new Integer[]{1};
+        }
+
+        String recognizeFileRequest = FileRecognizerUtils.sendRecognizeFileRequest(file, asrParam, recognizeAudioChannelArr);
         System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileRequest)));
     }
 
