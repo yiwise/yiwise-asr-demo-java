@@ -19,6 +19,7 @@ public class SingleThreadAsrDemoBootstrap {
         String accessKeySecret = properties.getProperty("accessKeySecret");
         String audioFileName = properties.getProperty("audioFileName", "test.wav");
         Long hotWordId = StringUtils.isEmpty(properties.getProperty("hotWordId")) ? null : Long.valueOf(properties.getProperty("hotWordId"));
+        Float selfLearningRatio = StringUtils.isEmpty(properties.getProperty("selfLearningRatio")) ? null : Float.valueOf(properties.getProperty("selfLearningRatio"));
         Long selfLearningModelId = StringUtils.isEmpty(properties.getProperty("selfLearningModelId")) ? null : Long.valueOf(properties.getProperty("selfLearningModelId"));
         boolean enablePunctuation = Boolean.valueOf(properties.getProperty("enablePunctuation", "false"));
         boolean enableIntermediateResult = Boolean.valueOf(properties.getProperty("enableIntermediateResult", "false"));
@@ -28,7 +29,7 @@ public class SingleThreadAsrDemoBootstrap {
         AsrClient asrClient = AsrClientFactory.getAsrClient();
 
         long currentTimeMillis = System.currentTimeMillis();
-        AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, selfLearningModelId);
+        AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, selfLearningModelId, selfLearningRatio);
 
         long time = System.currentTimeMillis() - currentTimeMillis;
         System.out.println("所有线程执行完毕, time=" + time);
