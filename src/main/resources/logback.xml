@@ -12,6 +12,7 @@
     </appender>
 
     <logger name="com.yiwise" level="DEBUG"/>
+    <!-- 删掉下面一行可减少音频发送时的日志输出 -->
     <logger name="com.yiwise.asr.common.client.message" level="TRACE"/>
 
     <root level="INFO">
