@@ -23,13 +23,14 @@ public class SingleThreadAsrDemoBootstrap {
         Long selfLearningModelId = StringUtils.isEmpty(properties.getProperty("selfLearningModelId")) ? null : Long.valueOf(properties.getProperty("selfLearningModelId"));
         boolean enablePunctuation = Boolean.valueOf(properties.getProperty("enablePunctuation", "false"));
         boolean enableIntermediateResult = Boolean.valueOf(properties.getProperty("enableIntermediateResult", "false"));
+        boolean enableInverseTextNormalization = Boolean.valueOf(properties.getProperty("enableInverseTextNormalization", "true"));
 
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
         AsrClient asrClient = AsrClientFactory.getAsrClient();
 
         long currentTimeMillis = System.currentTimeMillis();
-        AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, selfLearningModelId, selfLearningRatio);
+        AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, enableInverseTextNormalization, selfLearningModelId, selfLearningRatio);
 
         long time = System.currentTimeMillis() - currentTimeMillis;
         System.out.println("所有线程执行完毕, time=" + time);

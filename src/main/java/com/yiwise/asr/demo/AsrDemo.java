@@ -13,7 +13,7 @@ public class AsrDemo {
 
     public static String doTest(AsrClient asrClient, String audioFileName, Long hotWordId,
                                 boolean enablePunctuation, boolean enableIntermediateResult,
-                                Long selfLearningModelId, Float selfLearningRatio) throws Exception {
+                                boolean enableInverseTextNormalization, Long selfLearningModelId, Float selfLearningRatio) throws Exception {
         InputStream fileInputStream;
 
         File file = new File(audioFileName);
@@ -72,7 +72,10 @@ public class AsrDemo {
             asrRecognizer.setEnableIntermediateResult(enableIntermediateResult);
             // 自学习模型
             asrRecognizer.setSelfLearningModelId(selfLearningModelId);
+            // 自学习模型比率
             asrRecognizer.setSelfLearningRatio(selfLearningRatio);
+            // 是否开启逆文本功能
+            asrRecognizer.setEnableInverseTextNormalization(enableInverseTextNormalization);
 
             // 开启asr识别
             asrRecognizer.startAsr();
