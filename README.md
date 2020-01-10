@@ -1,7 +1,7 @@
 ### 注意事项
-1. 可在resource文件夹下的config.properties文件中修改相关配置
-2. resource文件夹下text.txt是用来训练自学习模型的样本文件，但是在demo中提供的accessKey不支持自学习模型，如有测试需要，可以联系商务
-3. 本Demo为Java客户端的Demo，内部包含了java的SDK，可使用SDK进行快速开发。由于服务端采用的是标准的HTTP+WebSocket进行交互，其它语言可参照**客户端服务端交互文档**进行对接开发
+1. 可在resource文件夹下的config.properties文件中修改相关配置；
+2. resource文件夹下text.txt是用来训练自学习模型的样本文件，但是在demo中提供的accessKey不支持自学习模型，如有测试需要，可以联系商务；
+3. 本Demo为Java客户端的Demo，内部包含了java的SDK，可使用SDK进行快速开发。由于服务端采用的是标准的HTTP+WebSocket进行交互，其它语言可参照**客户端服务端交互文档**进行对接开发。
 
 
 ### SDK的Maven地址
@@ -30,8 +30,7 @@
 也可在IDE上直接运行MultiThreadAsrDemoBootstrap.class、SingleThreadAsrDemoBootstrap.class等项目入口，开启识别
 
 ### 文件语音识别方法
-本demo所提供账号每天最大支持2个小时的音频文件识别
-可以在config.properties中修改需要识别的文件，如果是双声道文件，请以 ```xx_双声道.wav``` 命名音频文件
-运行项目中的 com.yiwise.asr.demo.recognizer.file.FileRecognizerDemoBootstrap 提交文件识别请求，提交后请记住提交后返回的fileRecognizerTaskId
-运行项目中的 com.yiwise.asr.demo.recognizer.file.QueryFileRecognizerResultDemoBootstrap 并修改此文件中的 fileRecognizerTaskId 为上次提交后返回的id进行查询，查询识别可能还未结束，可多次查询直至查询到最后识别结果
+本demo所提供账号每天最大支持2个小时的音频文件识别，可以在config.properties中修改需要识别的文件，如果是双声道文件，请以 ```xx_双声道.wav``` 命名音频文件。
+运行项目中的 com.yiwise.asr.demo.recognizer.file.FileRecognizerDemoBootstrap 提交文件识别请求，提交后请记住提交后返回的fileRecognizerTaskId。
+运行项目中的 com.yiwise.asr.demo.recognizer.file.QueryFileRecognizerResultDemoBootstrap 并修改此文件中的 fileRecognizerTaskId 为上次提交后返回的id进行查询，查询识别可能还未结束，可多次查询直至查询到最后识别结果。
 
