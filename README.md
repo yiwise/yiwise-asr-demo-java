@@ -1,7 +1,20 @@
 ### 注意事项
 1. 可在resource文件夹下的config.properties文件中修改相关配置
 2. resource文件夹下text.txt是用来训练自学习模型的样本文件，但是在demo中提供的accessKey不支持自学习模型，如有测试需要，可以联系商务
+3. 本Demo为Java客户端的Demo，内部包含了java的SDK，可使用SDK进行快速开发。由于服务端采用的是标准的HTTP+WebSocket进行交互，其它语言可参照**客户端服务端交互文档**进行对接开发
 
+
+### SDK的Maven地址
+```xml
+<dependency>
+    <groupId>com.yiwise</groupId>
+    <artifactId>asr-client-sdk</artifactId>
+    <version>1.0.7-RELEASE</version>
+</dependency>
+```
+
+### 客户端服务端交互文档
+[一知ASR实时语音识别使用说明文档](https://www.yuque.com/docs/share/d02243d2-c24e-4268-a7a8-3e1e090c4e03?#)
 
 ### 实时流式语音识别使用方法
 本demo所提供的账号最大支持3个并发
