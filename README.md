@@ -15,6 +15,7 @@
 
 ### 客户端服务端交互文档
 [一知ASR实时语音识别使用说明文档](https://www.yuque.com/docs/share/d02243d2-c24e-4268-a7a8-3e1e090c4e03?#)
+[一知ASR录音文件识别使用说明文档](https://www.yuque.com/docs/share/a131e157-191b-4347-823c-c0ec1a515820?#)
 
 ### 实时流式语音识别使用方法
 本demo所提供的账号最大支持3个并发
