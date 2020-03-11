@@ -4,7 +4,7 @@
 3. 本Demo为Java客户端的Demo，内部包含了java的SDK，可使用SDK进行快速开发。由于服务端采用的是标准的HTTP+WebSocket进行交互，其它语言可参照**客户端服务端交互文档**进行对接开发。
 
 
-### SDK的Maven地址
+### SDK的Maven配置
 ```xml
 <dependency>
     <groupId>com.yiwise</groupId>
