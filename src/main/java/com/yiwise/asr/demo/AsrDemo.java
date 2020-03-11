@@ -4,12 +4,15 @@ import com.yiwise.asr.AsrClient;
 import com.yiwise.asr.AsrRecognizer;
 import com.yiwise.asr.AsrRecognizerListener;
 import com.yiwise.asr.common.client.protocol.AsrRecognizerResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class AsrDemo {
+    private static Logger logger = LoggerFactory.getLogger(AsrDemo.class);
 
     public static String doTest(AsrClient asrClient, String audioFileName, Long hotWordId,
                                 boolean enablePunctuation, boolean enableIntermediateResult,
@@ -43,21 +46,21 @@ public class AsrDemo {
                 public void onSentenceBegin(AsrRecognizerResult result) {
                     // 请不要再此进行耗时操作，进行耗时操作可能引发一些不可预知问题；
                     // 如需进行耗时操作，请另外开辟线程执行
-                    System.out.println("SentenceBegin----" + result.toString());
+                    logger.info("SentenceBegin----" + result.toString());
                 }
 
                 // 一句话的中间结果
                 public void onSentenceBeginChanged(AsrRecognizerResult result) {
                     // 请不要再此进行耗时操作，进行耗时操作可能引发一些不可预知问题；
                     // 如需进行耗时操作，请另外开辟线程执行
-                    System.out.println("SentenceChanged--" + result.toString());
+                    logger.info("SentenceChanged--" + result.toString());
                 }
 
                 // 一句话的结束事件
                 public void onSentenceEnd(AsrRecognizerResult result) {
                     // 请不要再此进行耗时操作，进行耗时操作可能引发一些不可预知问题；
                     // 如需进行耗时操作，请另外开辟线程执行
-                    System.out.println("SentenceEnd-----" + result.toString());
+                    logger.info("SentenceEnd-----" + result.toString());
                     sb.append(result.getResultText());
                 }
             });

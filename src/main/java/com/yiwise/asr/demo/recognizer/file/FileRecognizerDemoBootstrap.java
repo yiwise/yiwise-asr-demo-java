@@ -3,9 +3,12 @@ package com.yiwise.asr.demo.recognizer.file;
 import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.common.client.protocol.AsrParam;
 import com.yiwise.asr.common.client.utils.JsonUtils;
+import com.yiwise.asr.demo.selfllearning.SelfLearningListDemoBootstrap;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.recognizer.file.FileRecognizerUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.URL;
@@ -13,6 +16,7 @@ import java.net.URLDecoder;
 import java.util.Properties;
 
 public class FileRecognizerDemoBootstrap {
+    private static Logger logger = LoggerFactory.getLogger(FileRecognizerDemoBootstrap.class);
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -55,7 +59,7 @@ public class FileRecognizerDemoBootstrap {
         }
 
         String recognizeFileRequest = FileRecognizerUtils.sendRecognizeFileRequest(file, asrParam, recognizeAudioChannelArr);
-        System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileRequest)));
+        logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileRequest)));
     }
 
 }

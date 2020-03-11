@@ -4,10 +4,13 @@ import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.common.client.utils.JsonUtils;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.recognizer.file.FileRecognizerUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
 public class QueryFileRecognizerResultDemoBootstrap {
+    private static Logger logger = LoggerFactory.getLogger(QueryFileRecognizerResultDemoBootstrap.class);
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -21,7 +24,7 @@ public class QueryFileRecognizerResultDemoBootstrap {
         Long fileRecognizerTaskId = 1L;
 
         String recognizeFileResult = FileRecognizerUtils.queryRecognizeFileResult(null, fileRecognizerTaskId);
-        System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileResult)));
+        logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileResult)));
     }
 
 }

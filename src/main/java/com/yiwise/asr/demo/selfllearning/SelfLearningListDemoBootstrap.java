@@ -4,6 +4,8 @@ import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.common.client.utils.JsonUtils;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.selflearning.SelflearningModelTrainingUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -11,6 +13,7 @@ import java.util.Properties;
  * 获取自学习模型列表测试（测试账号没有配额，请联系商务申请正式账号）
  */
 public class SelfLearningListDemoBootstrap {
+    private static Logger logger = LoggerFactory.getLogger(SelfLearningListDemoBootstrap.class);
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -22,7 +25,7 @@ public class SelfLearningListDemoBootstrap {
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
         String listTrainingRequest = SelflearningModelTrainingUtils.listTrainingRequest(1, 20, null, null);
-        System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(listTrainingRequest)));
+        logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(listTrainingRequest)));
     }
 
 }

@@ -4,6 +4,8 @@ import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.common.client.utils.JsonUtils;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.selflearning.SelflearningModelTrainingUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Properties;
@@ -12,6 +14,7 @@ import java.util.Properties;
  * 添加自学习模型测试（测试账号没有配额，请联系商务申请正式账号）
  */
 public class SelfLearningRequestDemoBootstrap {
+    private static Logger logger = LoggerFactory.getLogger(SelfLearningRequestDemoBootstrap.class);
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -24,7 +27,7 @@ public class SelfLearningRequestDemoBootstrap {
 
         File file = new File(Thread.currentThread().getContextClassLoader().getResource("text.txt").getFile());
         String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequest(1L, "测试模型txt_" + System.currentTimeMillis(), file);
-        System.out.println(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(trainingRequest)));
+        logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(trainingRequest)));
     }
 
 }

@@ -3,6 +3,8 @@ package com.yiwise.asr.demo;
 import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -11,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 多线程测试demo
  */
 public class MultiThreadAsrDemoBootstrap {
+    private static Logger logger = LoggerFactory.getLogger(MultiThreadAsrDemoBootstrap.class);
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -44,7 +47,7 @@ public class MultiThreadAsrDemoBootstrap {
                         int remain = count.decrementAndGet();
                         if (remain == 0) {
                             long time = System.currentTimeMillis() - currentTimeMillis;
-                            System.out.println("所有线程执行完毕, time=" + time + ", average=" + time / loopCount);
+                            logger.info("所有线程执行完毕, time=" + time + ", average=" + time / loopCount);
                             System.exit(0);
                         }
                     } catch (Exception e) {

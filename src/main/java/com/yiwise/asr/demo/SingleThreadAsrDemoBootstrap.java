@@ -4,6 +4,8 @@ import com.yiwise.asr.AsrClient;
 import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -11,6 +13,7 @@ import java.util.Properties;
  * 单线程测试demo
  */
 public class SingleThreadAsrDemoBootstrap {
+    private static Logger logger = LoggerFactory.getLogger(SingleThreadAsrDemoBootstrap.class);
 
     public static void main(String[] args) throws Exception {
         Properties properties = PropertiesLoader.loadProperties("config.properties");
@@ -33,6 +36,6 @@ public class SingleThreadAsrDemoBootstrap {
         AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, enableInverseTextNormalization, selfLearningModelId, selfLearningRatio);
 
         long time = System.currentTimeMillis() - currentTimeMillis;
-        System.out.println("所有线程执行完毕, time=" + time);
+        logger.info("所有线程执行完毕, time=" + time);
     }
 }
