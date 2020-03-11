@@ -9,7 +9,7 @@
 <dependency>
     <groupId>com.yiwise</groupId>
     <artifactId>asr-client-sdk</artifactId>
-    <version>1.0.7-RELEASE</version>
+    <version>1.0.8-RELEASE</version>
 </dependency>
 ```
 
