@@ -29,8 +29,8 @@ public class HotWordDemoBootstrap {
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
         Map<String, Integer> map = new HashMap<>();
+        map.put("你好", 1);
         String hotWord = HotwordUtils.addOrUpdateHotWordRequest(null, "热词名称_" + +System.currentTimeMillis(), map);
         logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(hotWord)));
     }
-
 }
