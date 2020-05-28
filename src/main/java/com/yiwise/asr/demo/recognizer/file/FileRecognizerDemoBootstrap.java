@@ -3,7 +3,6 @@ package com.yiwise.asr.demo.recognizer.file;
 import com.yiwise.asr.AsrClientFactory;
 import com.yiwise.asr.common.client.protocol.AsrParam;
 import com.yiwise.asr.common.client.utils.JsonUtils;
-import com.yiwise.asr.demo.selfllearning.SelfLearningListDemoBootstrap;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.recognizer.file.FileRecognizerUtils;
 import org.apache.commons.lang3.StringUtils;
