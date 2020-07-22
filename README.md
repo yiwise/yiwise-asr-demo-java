@@ -1,3 +1,5 @@
+# 一知asr-java客户端demo
+
 ### 注意事项
 1. 可在resource文件夹下的config.properties文件中修改相关配置；
 2. resource文件夹下text.txt是用来训练自学习模型的样本文件，但是在demo中提供的accessKey不支持自学习模型，如有测试需要，可以联系商务；
