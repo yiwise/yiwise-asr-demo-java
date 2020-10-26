@@ -33,9 +33,11 @@ public class SingleThreadAsrDemoBootstrap {
         AsrClient asrClient = AsrClientFactory.getAsrClient();
 
         long currentTimeMillis = System.currentTimeMillis();
-        AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, enableInverseTextNormalization, selfLearningModelId, selfLearningRatio);
+        String doTest = AsrDemo.doTest(asrClient, audioFileName, hotWordId, enablePunctuation, enableIntermediateResult, enableInverseTextNormalization, selfLearningModelId, selfLearningRatio);
 
         long time = System.currentTimeMillis() - currentTimeMillis;
+
+        logger.info("识别结果：" + doTest);
         logger.info("所有线程执行完毕, time=" + time);
     }
 }

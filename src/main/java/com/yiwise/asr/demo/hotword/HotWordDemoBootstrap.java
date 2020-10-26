@@ -29,7 +29,17 @@ public class HotWordDemoBootstrap {
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
         Map<String, Integer> map = new HashMap<>();
-        map.put("你好", 1);
+        map.put("二期", 3);
+        map.put("三期", 3);
+        map.put("四期", 3);
+        map.put("五期", 3);
+        map.put("六期", 3);
+        map.put("七期", 3);
+        map.put("八期", 3);
+        map.put("九期", 3);
+        map.put("十期", 3);
+        map.put("十一期", 3);
+        map.put("十二期", 3);
         String hotWord = HotwordUtils.addOrUpdateHotWordRequest(null, "热词名称_" + +System.currentTimeMillis(), map);
         logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(hotWord)));
     }

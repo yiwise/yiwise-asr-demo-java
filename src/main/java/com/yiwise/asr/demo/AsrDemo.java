@@ -61,7 +61,7 @@ public class AsrDemo {
                     // 请不要再此进行耗时操作，进行耗时操作可能引发一些不可预知问题；
                     // 如需进行耗时操作，请另外开辟线程执行
                     logger.info("SentenceEnd-----" + result.toString());
-                    sb.append(result.getResultText());
+                    sb.append(result.getResultText() + "\n");
                 }
             });
 

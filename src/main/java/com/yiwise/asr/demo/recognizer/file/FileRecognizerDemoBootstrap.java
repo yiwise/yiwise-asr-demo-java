@@ -13,6 +13,7 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class FileRecognizerDemoBootstrap {
     private static Logger logger = LoggerFactory.getLogger(FileRecognizerDemoBootstrap.class);
@@ -57,7 +58,7 @@ public class FileRecognizerDemoBootstrap {
             recognizeAudioChannelArr = new Integer[]{1};
         }
 
-        String recognizeFileRequest = FileRecognizerUtils.sendRecognizeFileRequest(file, asrParam, recognizeAudioChannelArr);
+        String recognizeFileRequest = FileRecognizerUtils.sendRecognizeFileRequest(null, null, file, asrParam, recognizeAudioChannelArr, 10, TimeUnit.MINUTES);
         logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(recognizeFileRequest)));
     }
 
