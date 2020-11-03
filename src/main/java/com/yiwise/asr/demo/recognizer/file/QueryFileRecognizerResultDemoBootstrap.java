@@ -38,7 +38,7 @@ public class QueryFileRecognizerResultDemoBootstrap {
         JsonNode jsonNode = JsonUtils.string2JsonNode(recognizeFileResult);
         JsonNode dataNode = jsonNode.get("data");
         String data = dataNode.get("result").toString();
-        String recognizerStatus = dataNode.get("recognizerStatus").toString();
+        String recognizerStatus = dataNode.get("recognizerStatus").asText();
         if (!"FINISHED".equals(recognizerStatus)) {
             throw new RuntimeException("识别出错，recognizeFileResult=" + recognizeFileResult);
         }

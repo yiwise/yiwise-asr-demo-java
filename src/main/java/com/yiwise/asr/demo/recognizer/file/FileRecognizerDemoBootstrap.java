@@ -28,6 +28,7 @@ public class FileRecognizerDemoBootstrap {
         Long hotWordId = StringUtils.isEmpty(properties.getProperty("hotWordId")) ? null : Long.valueOf(properties.getProperty("hotWordId"));
         Long selfLearningModelId = StringUtils.isEmpty(properties.getProperty("selfLearningModelId")) ? null : Long.valueOf(properties.getProperty("selfLearningModelId"));
         boolean enablePunctuation = Boolean.valueOf(properties.getProperty("enablePunctuation", "false"));
+        boolean enableInverseTextNormalization = Boolean.valueOf(properties.getProperty("enableInverseTextNormalization", "true"));
 
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
@@ -43,6 +44,8 @@ public class FileRecognizerDemoBootstrap {
         asrParam.setEnablePunctuation(enablePunctuation);
         asrParam.setHotWordId(hotWordId);
         asrParam.setSelfLearningModelId(selfLearningModelId);
+        asrParam.setEnableInverseTextNormalization(enableInverseTextNormalization);
+        asrParam.setEnableSplit(false);
 
         // 识别通道
         // [1]          表示单通道
