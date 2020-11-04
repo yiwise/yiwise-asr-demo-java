@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLDecoder;
 
 public class AsrDemo {
     private static Logger logger = LoggerFactory.getLogger(AsrDemo.class);
@@ -23,7 +25,10 @@ public class AsrDemo {
         if (file.exists()) {
             fileInputStream = new FileInputStream(file);
         } else {
-            fileInputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(audioFileName);
+            URL resource = Thread.currentThread().getContextClassLoader().getResource(audioFileName);
+            String resourceFile = resource.getFile();
+            file = new File(URLDecoder.decode(resourceFile, "UTF-8"));
+            fileInputStream = new FileInputStream(file);
         }
 
         if (fileInputStream == null) {

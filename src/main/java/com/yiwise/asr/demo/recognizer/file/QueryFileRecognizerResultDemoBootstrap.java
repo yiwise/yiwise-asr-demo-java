@@ -31,7 +31,7 @@ public class QueryFileRecognizerResultDemoBootstrap {
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
-        Long fileRecognizerTaskId = 123L;
+        Long fileRecognizerTaskId = 161L;
 
         String recognizeFileResult = FileRecognizerUtils.queryRecognizeFileResult(null, fileRecognizerTaskId);
 
@@ -39,7 +39,13 @@ public class QueryFileRecognizerResultDemoBootstrap {
         JsonNode dataNode = jsonNode.get("data");
         String data = dataNode.get("result").toString();
         String recognizerStatus = dataNode.get("recognizerStatus").asText();
-        if (!"FINISHED".equals(recognizerStatus)) {
+        if ("UN_START".equals(recognizerStatus) || "IN_PROCESSING".equals(recognizerStatus)) {
+            // 识别中，轮询查询
+            logger.info("任务未开始或进行中, recognizerStatus=" + recognizerStatus);
+            Thread.sleep(3_000);
+            main(args);
+            return;
+        } else if (!"FINISHED".equals(recognizerStatus)) {
             throw new RuntimeException("识别出错，recognizeFileResult=" + recognizeFileResult);
         }
 

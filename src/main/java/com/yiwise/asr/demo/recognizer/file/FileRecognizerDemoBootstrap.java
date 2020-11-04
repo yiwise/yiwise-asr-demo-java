@@ -45,7 +45,7 @@ public class FileRecognizerDemoBootstrap {
         asrParam.setHotWordId(hotWordId);
         asrParam.setSelfLearningModelId(selfLearningModelId);
         asrParam.setEnableInverseTextNormalization(enableInverseTextNormalization);
-        asrParam.setEnableSplit(false);
+        asrParam.setEnableSplit(true);
 
         // 识别通道
         // [1]          表示单通道
@@ -58,7 +58,7 @@ public class FileRecognizerDemoBootstrap {
         if (StringUtils.contains(file.getName(), "双声道")) {
             recognizeAudioChannelArr = new Integer[]{1, 1};
         } else {
-            recognizeAudioChannelArr = new Integer[]{1};
+            recognizeAudioChannelArr = new Integer[]{1, 1};
         }
 
         String recognizeFileRequest = FileRecognizerUtils.sendRecognizeFileRequest(null, null, file, asrParam, recognizeAudioChannelArr, 10, TimeUnit.MINUTES);

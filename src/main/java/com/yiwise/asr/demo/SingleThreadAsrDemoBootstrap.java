@@ -20,7 +20,7 @@ public class SingleThreadAsrDemoBootstrap {
         String gatewayUrl = properties.getProperty("gatewayUrl", "http://127.0.0.1:6060");
         String accessKeyId = properties.getProperty("accessKeyId");
         String accessKeySecret = properties.getProperty("accessKeySecret");
-        String audioFileName = properties.getProperty("audioFileName", "test.wav");
+        String audioFileName = properties.getProperty("audioFileName", "单人单声道音频.wav");
         Long hotWordId = StringUtils.isEmpty(properties.getProperty("hotWordId")) ? null : Long.valueOf(properties.getProperty("hotWordId"));
         Float selfLearningRatio = StringUtils.isEmpty(properties.getProperty("selfLearningRatio")) ? null : Float.valueOf(properties.getProperty("selfLearningRatio"));
         Long selfLearningModelId = StringUtils.isEmpty(properties.getProperty("selfLearningModelId")) ? null : Long.valueOf(properties.getProperty("selfLearningModelId"));
