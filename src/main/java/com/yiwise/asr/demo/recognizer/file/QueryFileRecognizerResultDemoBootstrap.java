@@ -7,6 +7,7 @@ import com.yiwise.asr.common.client.protocol.AsrRecognizerResult;
 import com.yiwise.asr.common.client.utils.JsonUtils;
 import com.yiwise.asr.demo.util.PropertiesLoader;
 import com.yiwise.asr.recognizer.file.FileRecognizerUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +28,17 @@ public class QueryFileRecognizerResultDemoBootstrap {
         String gatewayUrl = properties.getProperty("gatewayUrl", "http://127.0.0.1:6060");
         String accessKeyId = properties.getProperty("accessKeyId");
         String accessKeySecret = properties.getProperty("accessKeySecret");
+        String fileRecognizerTaskIdStr = properties.getProperty("fileRecognizerTaskId");
+
+        if (StringUtils.isEmpty(fileRecognizerTaskIdStr)) {
+            logger.error("fileRecognizerTaskId不能为空");
+            return;
+        }
 
         // 初始化AsrClientFactory，AsrClientFactory中缓存了AsrClient的实例，每次识别的时候从AsrClientFactory中获取AsrClient的实例
         AsrClientFactory.init(gatewayUrl, accessKeyId, accessKeySecret);
 
-        Long fileRecognizerTaskId = 161L;
+        Long fileRecognizerTaskId = Long.valueOf(fileRecognizerTaskIdStr);
 
         String recognizeFileResult = FileRecognizerUtils.queryRecognizeFileResult(null, fileRecognizerTaskId);
 
