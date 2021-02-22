@@ -62,7 +62,7 @@ public class QueryFileRecognizerResultDemoBootstrap {
         List<Pair<Integer, AsrRecognizerResult>> listRes = new LinkedList<>();
         for (int i = 0; i < list.size(); i++) {
             final int finalI = i;
-            final List<AsrRecognizerResult> item = list.get(i);
+            final List<AsrRecognizerResult> item =  list.get(i);
             item.forEach(temp -> {
                 listRes.add(Pair.of(finalI, temp));
             });
@@ -73,8 +73,8 @@ public class QueryFileRecognizerResultDemoBootstrap {
         File file = new File("file.text");
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
         for (Pair<Integer, AsrRecognizerResult> pair : collect) {
-            logger.debug("{}: {}", pair.getLeft(), pair.getRight().getResultText());
-            bufferedWriter.write(pair.getLeft() + " : " + pair.getRight().getResultText());
+            logger.debug("{}: {} {}  {}", pair.getLeft(), pair.getRight().getBeginTime(),  pair.getRight().getTime(), pair.getRight().getResultText());
+            bufferedWriter.write(pair.getLeft() + " : " + pair.getRight().getBeginTime() + "   " + pair.getRight().getTime() + "  " + pair.getRight().getResultText());
             bufferedWriter.newLine();
         }
         bufferedWriter.close();

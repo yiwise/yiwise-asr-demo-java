@@ -30,7 +30,7 @@ public class SelfLearningRequestByTextDemoBootstrap {
         File file = new File(Thread.currentThread().getContextClassLoader().getResource("text.txt").getFile());
         String text = IOUtils.toString(new FileInputStream(file));
 
-        String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequestByText(11L, "测试模型txt_" + System.currentTimeMillis(), text);
+        String trainingRequest = SelflearningModelTrainingUtils.sendTrainingRequestByText(null, "测试模型txt_" + System.currentTimeMillis(), text);
         logger.info(JsonUtils.object2PrettyString(JsonUtils.string2JsonNode(trainingRequest)));
     }
 
